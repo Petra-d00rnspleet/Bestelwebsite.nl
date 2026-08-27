@@ -558,3 +558,422 @@ a:focus-visible {
   color: rgba(244, 240, 228, 0.55);
   font-size: 14px;
 }
+
+/* ============================================================
+   Tabs (besteller: nieuwe bestelling / mijn bestellingen)
+   ============================================================ */
+
+.tabs {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 0 0 28px;
+  flex-wrap: wrap;
+}
+
+.tab-knop {
+  font-family: var(--font-technisch);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: transparent;
+  color: rgba(244, 240, 228, 0.6);
+  border: 1.5px solid rgba(244, 240, 228, 0.3);
+  border-radius: 999px;
+  padding: 9px 18px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+}
+
+.tab-knop:hover,
+.tab-knop:focus-visible {
+  border-color: var(--papier);
+  color: var(--papier);
+}
+
+.tab-knop.actief {
+  background: var(--stempel-rood);
+  border-color: var(--stempel-rood);
+  color: var(--papier);
+}
+
+/* ============================================================
+   Inline terugknop (binnen een scherm, i.t.t. de vaste .terug-link)
+   ============================================================ */
+
+.terug-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-technisch);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: none;
+  border: none;
+  color: rgba(244, 240, 228, 0.65);
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 20px;
+  text-decoration: none;
+}
+
+.terug-inline:hover,
+.terug-inline:focus-visible {
+  color: var(--papier);
+}
+
+/* ============================================================
+   Mini-lijst — "Mijn bestellingen" (besteller) en klikbare
+   bestelkaarten (beheerder), los klikbaar i.p.v. inline beheren
+   ============================================================ */
+
+.pagina {
+  flex: 1;
+  padding: 110px 24px 60px;
+  max-width: 640px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.pagina-breed {
+  max-width: 900px;
+}
+
+.pagina h1 {
+  font-family: var(--font-technisch);
+  font-size: clamp(22px, 4vw, 28px);
+  letter-spacing: 0.02em;
+  margin: 0 0 24px;
+  color: var(--papier);
+}
+
+.mini-lijst {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.mini-kaart {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: var(--papier);
+  color: var(--inkt);
+  border: none;
+  border-radius: 4px;
+  padding: 18px 20px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  font-family: var(--font-body);
+}
+
+.mini-kaart:hover,
+.mini-kaart:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+}
+
+.mini-kaart-kop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.mini-kaart-kop h2 {
+  font-family: var(--font-technisch);
+  font-size: 15px;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.mini-kaart-datum {
+  font-family: var(--font-technisch);
+  font-size: 11px;
+  color: var(--inkt-zacht);
+  white-space: nowrap;
+}
+
+.mini-kaart-voorbeeld {
+  font-size: 13px;
+  color: var(--inkt-zacht);
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mini-kaart-voet {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.pijl {
+  font-family: var(--font-technisch);
+  font-size: 12px;
+  color: var(--stempel-rood-donker);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   Detailscherm (bestelling) — gedeeld door besteller & beheerder
+   ============================================================ */
+
+.detail-kaart {
+  background: var(--papier);
+  color: var(--inkt);
+  border-radius: 4px;
+  padding: 28px 28px 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.detail-kop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  border-bottom: 2px dashed var(--papier-schaduw);
+  padding-bottom: 16px;
+  margin-bottom: 18px;
+}
+
+.detail-kop h2 {
+  font-family: var(--font-technisch);
+  font-size: 19px;
+  margin: 0 0 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.detail-kop .mini-kaart-datum {
+  margin-top: 4px;
+}
+
+.detail-omschrijving {
+  font-size: 14px;
+  line-height: 1.65;
+  color: #2b2a24;
+  white-space: pre-wrap;
+  margin: 0 0 22px;
+}
+
+.detail-acties {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Statusknoppen (beheerder) */
+.status-knoppen {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.status-knop {
+  font-family: var(--font-technisch);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1.5px solid var(--papier-schaduw);
+  color: var(--inkt-zacht);
+  border-radius: 999px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.status-knop:hover,
+.status-knop:focus-visible {
+  border-color: var(--inkt-zacht);
+}
+
+.status-knop.actief[data-status="nieuw"] {
+  background: var(--stempel-rood);
+  border-color: var(--stempel-rood);
+  color: var(--papier);
+}
+
+.status-knop.actief[data-status="in-behandeling"] {
+  background: #8a6d1f;
+  border-color: #8a6d1f;
+  color: var(--papier);
+}
+
+.status-knop.actief[data-status="afgerond"] {
+  background: var(--groen-ontvangen);
+  border-color: var(--groen-ontvangen);
+  color: var(--papier);
+}
+
+/* Chat-knop, gevaar-knop (verwijderen) */
+.chat-knop,
+.gevaar-knop {
+  font-family: var(--font-technisch);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 3px;
+  padding: 12px 20px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.15s ease;
+}
+
+.chat-knop {
+  background: var(--blauw-diep);
+  color: var(--papier);
+}
+
+.chat-knop:hover,
+.chat-knop:focus-visible {
+  background: #08192f;
+}
+
+.gevaar-knop {
+  background: transparent;
+  border: 1.5px solid var(--stempel-rood-donker);
+  color: var(--stempel-rood-donker);
+  margin-left: auto;
+}
+
+.gevaar-knop:hover,
+.gevaar-knop:focus-visible {
+  background: var(--stempel-rood-donker);
+  color: var(--papier);
+}
+
+/* ============================================================
+   Chat
+   ============================================================ */
+
+.chat-kader {
+  background: var(--papier);
+  color: var(--inkt);
+  border-radius: 4px;
+  padding: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  height: 60vh;
+  min-height: 380px;
+}
+
+.chat-titel {
+  font-family: var(--font-technisch);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--inkt-zacht);
+  border-bottom: 2px dashed var(--papier-schaduw);
+  padding-bottom: 12px;
+  margin: 0 0 14px;
+}
+
+.chat-berichten {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 4px;
+}
+
+.chat-bericht {
+  max-width: 78%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.chat-bericht .chat-afzender {
+  display: block;
+  font-family: var(--font-technisch);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+  opacity: 0.65;
+}
+
+.chat-bericht.eigen {
+  align-self: flex-end;
+  background: var(--stempel-rood);
+  color: var(--papier);
+  border-bottom-right-radius: 3px;
+}
+
+.chat-bericht.ander {
+  align-self: flex-start;
+  background: #ece6d4;
+  color: var(--inkt);
+  border-bottom-left-radius: 3px;
+}
+
+.chat-leeg {
+  font-family: var(--font-technisch);
+  font-size: 12px;
+  color: var(--inkt-zacht);
+  text-align: center;
+  margin: auto;
+}
+
+.chat-invoer {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+  border-top: 2px dashed var(--papier-schaduw);
+  padding-top: 14px;
+}
+
+.chat-invoer input {
+  flex: 1;
+  font-family: var(--font-body);
+  font-size: 14px;
+  padding: 11px 14px;
+  border: 2px solid var(--papier-schaduw);
+  border-radius: 3px;
+  background: #fffdf8;
+  color: var(--inkt);
+}
+
+.chat-invoer input:focus {
+  border-color: var(--stempel-rood);
+  outline: none;
+}
+
+.chat-invoer button {
+  font-family: var(--font-technisch);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--stempel-rood);
+  color: var(--papier);
+  border: none;
+  border-radius: 3px;
+  padding: 0 22px;
+  cursor: pointer;
+}
+
+.chat-invoer button:hover,
+.chat-invoer button:focus-visible {
+  background: var(--stempel-rood-donker);
+}
+
+.chat-invoer button:disabled {
+  background: var(--papier-schaduw);
+  color: var(--inkt-zacht);
+  cursor: not-allowed;
+}
