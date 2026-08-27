@@ -114,8 +114,33 @@ Wil je het steviger maken? Twee opties, van eenvoudig naar grondig:
   dan ligt de controle bij Firebase zelf in plaats van in de
   broncode.
 
-## Bestelstatus wijzigen
+## Bestellingen bekijken, chatten en verwijderen
 
-In het beheerderscherm kan de status van elke bestelling worden
-gezet op **Nieuw**, **In behandeling** of **Afgerond** via het
-keuzemenu op de bestelkaart. Dit wordt direct opgeslagen in Firebase.
+- **Besteller**: naast "Nieuwe bestelling" staat de tab **Mijn
+  bestellingen**. Dit onthoudt (in de browser, via `localStorage`)
+  welke bestellingen jij hebt geplaatst. Klik op een bestelling voor
+  de details en de knop **Chat met de beheerder**.
+- **Beheerder**: elke bestelling in de lijst is een losse, klikbare
+  kaart. Klik erop voor een eigen detailpagina met knoppen om de
+  status te wijzigen (**Nieuw / In behandeling / Afgerond**), de
+  bestelling te **verwijderen**, of te **chatten met de besteller**.
+- De chat van een bestelling wordt opgeslagen onder
+  `bestellingen/{id}/chat` in de database en is voor beide kanten
+  live zichtbaar — geen pagina-ververs nodig.
+- Let op: omdat de besteller niet inlogt, wordt "wie ben ik"
+  bijgehouden per browser (`localStorage`). Op een ander apparaat of
+  in een incognitovenster zie je "Mijn bestellingen" dus niet
+  terug — de bestelling zelf blijft wel gewoon in Firebase staan.
+
+## Bestandsoverzicht (bijgewerkt)
+
+```
+index.html          Startscherm — kies "Besteller" of "Beheerder"
+besteller.html       Tabs: nieuwe bestelling / mijn bestellingen / detail / chat
+besteller.js          Formulier, "mijn bestellingen" (localStorage), detail, chat
+beheerder.html         Wachtwoordscherm; daarna lijst / detail / chat
+beheerder.js            Login, klikbare bestellingen, status, verwijderen, chat
+firebase-config.js      Firebase-gegevens + beheerderswachtwoord
+firebase-init.js        Initialiseert Firebase
+style.css                Alle vormgeving
+```
