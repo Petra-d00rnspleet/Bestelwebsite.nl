@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beheerder — Website Bestellen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="merk">Teken<span>bureau</span> Bestellingen</div>
+  <a href="index.html" class="terug-link">&larr; Terug</a>
+
+  <!-- Wachtwoordscherm -->
+  <main class="login-wrapper" id="login-scherm">
+    <form class="login-bon" id="login-formulier">
+      <h1>Beheerder</h1>
+      <p>Vul het wachtwoord in om de bestellingen te bekijken.</p>
+      <div class="veld">
+        <label for="wachtwoord">Wachtwoord</label>
+        <input type="password" id="wachtwoord" name="wachtwoord" required />
+      </div>
+      <button type="submit" class="knop-verzend" style="width: 100%;">Inloggen</button>
+      <p class="status-tekst fout" id="login-fout" style="margin-top: 12px;"></p>
+    </form>
+  </main>
+
+  <!-- Dashboard met bestellingen (verborgen tot na inloggen) -->
+  <div class="dashboard" id="dashboard" hidden>
+    <div class="dashboard-kop">
+      <div>
+        <h1>Bestellingen</h1>
+        <div class="telling" id="telling">0 bestellingen</div>
+      </div>
+      <button class="uitloggen" id="uitlog-knop">Uitloggen</button>
+    </div>
+
+    <div class="bestellingen-lijst" id="bestellingen-lijst">
+      <p class="leeg-melding">Bestellingen laden...</p>
+    </div>
+  </div>
+
+  <!-- Firebase SDK (compat-versie, geen build-stap nodig) -->
+  <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-database-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="firebase-init.js"></script>
+  <script src="beheerder.js"></script>
+</body>
+</html>
