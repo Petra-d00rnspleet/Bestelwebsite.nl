@@ -9,13 +9,13 @@
 // ============================================================
 
 const firebaseConfig = {
-  apiKey: "VUL_HIER_JE_API_KEY_IN",
-  authDomain: "VUL_HIER_IN.firebaseapp.com",
-  databaseURL: "https://VUL_HIER_IN-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "VUL_HIER_IN",
-  storageBucket: "VUL_HIER_IN.appspot.com",
-  messagingSenderId: "VUL_HIER_IN",
-  appId: "VUL_HIER_IN",
+  apiKey: "AIzaSyB_gIvmh07gYLw6kbb9-EWaxm_MnDavfmA",
+  authDomain: "bestelwebsitenl.firebaseapp.com",
+  databaseURL: "https://bestelwebsitenl-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "bestelwebsitenl",
+  storageBucket: "bestelwebsitenl.firebasestorage.app",
+  messagingSenderId: "298628785707",
+  appId: "1:298628785707:web:fad0248548d7a371e1ec6e",
 };
 
 // ============================================================
