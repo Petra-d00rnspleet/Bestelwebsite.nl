@@ -1,0 +1,560 @@
+/* ============================================================
+   Website Bestellen — "Bouwbon" ontwerpsysteem
+   Kleuren, type en lagen gedeeld door alle schermen
+   ============================================================ */
+
+:root {
+  --blauw-diep: #0b2545;
+  --blauw-paneel: #123a63;
+  --blauw-lijn: rgba(255, 255, 255, 0.09);
+  --papier: #f4f0e4;
+  --papier-schaduw: #e6dfcc;
+  --inkt: #1c1c18;
+  --inkt-zacht: #55544a;
+  --stempel-rood: #d6543c;
+  --stempel-rood-donker: #b8432e;
+  --groen-ontvangen: #3c6e47;
+  --focus-ring: #ffd166;
+
+  --font-technisch: "JetBrains Mono", "Courier New", monospace;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--papier);
+  background-color: var(--blauw-diep);
+  background-image:
+    linear-gradient(var(--blauw-lijn) 1px, transparent 1px),
+    linear-gradient(90deg, var(--blauw-lijn) 1px, transparent 1px);
+  background-size: 32px 32px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Respecteer reduced-motion voorkeur */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+a {
+  color: inherit;
+}
+
+/* ---------- Kop / merk ---------- */
+
+.merk {
+  position: fixed;
+  top: 24px;
+  left: 28px;
+  font-family: var(--font-technisch);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(244, 240, 228, 0.55);
+  z-index: 5;
+}
+
+.merk span {
+  color: var(--stempel-rood);
+}
+
+/* ---------- Focus states (toetsenbord) ---------- */
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+/* ============================================================
+   Startscherm — rolkeuze
+   ============================================================ */
+
+.start-scherm {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+  gap: 56px;
+}
+
+.start-titel {
+  font-family: var(--font-technisch);
+  font-size: clamp(28px, 5vw, 44px);
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+  max-width: 720px;
+  color: var(--papier);
+}
+
+.start-titel .onderstreping {
+  display: inline-block;
+  border-bottom: 3px solid var(--stempel-rood);
+  padding-bottom: 4px;
+}
+
+.rol-keuze {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Stempel-knoppen */
+.stempel-knop {
+  --kleur: var(--papier);
+  font-family: var(--font-technisch);
+  font-size: 18px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--kleur);
+  border: 3px solid var(--kleur);
+  border-radius: 999px;
+  padding: 26px 44px;
+  cursor: pointer;
+  transform: rotate(var(--hoek, -2deg));
+  transition: transform 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+  position: relative;
+}
+
+.stempel-knop::after {
+  content: attr(data-onderschrift);
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  margin-top: 6px;
+  opacity: 0.7;
+  text-transform: none;
+}
+
+.stempel-knop:hover,
+.stempel-knop:focus-visible {
+  transform: rotate(0deg) scale(1.04);
+  background-color: var(--kleur);
+  color: var(--blauw-diep);
+}
+
+.stempel-knop.rood {
+  --kleur: var(--stempel-rood);
+  --hoek: 2deg;
+}
+
+/* ---------- Terugknop ---------- */
+
+.terug-link {
+  position: fixed;
+  top: 24px;
+  right: 28px;
+  font-family: var(--font-technisch);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgba(244, 240, 228, 0.7);
+  border: 1px solid rgba(244, 240, 228, 0.35);
+  border-radius: 999px;
+  padding: 8px 16px;
+  z-index: 5;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.terug-link:hover {
+  border-color: var(--papier);
+  color: var(--papier);
+}
+
+/* ============================================================
+   De "bon" (het formulier / de kaart) — signature element
+   ============================================================ */
+
+.bon-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 20px 60px;
+}
+
+.bon {
+  background: var(--papier);
+  color: var(--inkt);
+  width: 100%;
+  max-width: 560px;
+  padding: 40px 36px 36px;
+  border-radius: 4px;
+  position: relative;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+
+/* geperforeerde rand bovenaan, alsof de bon is afgescheurd */
+.bon::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background-image: radial-gradient(circle, var(--blauw-diep) 4px, transparent 4.5px);
+  background-size: 20px 12px;
+  background-position: 10px 0;
+  background-repeat: repeat-x;
+}
+
+.bon-kop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 2px dashed var(--papier-schaduw);
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+  gap: 12px;
+}
+
+.bon-kop h1 {
+  font-family: var(--font-technisch);
+  font-size: 20px;
+  letter-spacing: 0.04em;
+  margin: 0 0 4px;
+  text-transform: uppercase;
+}
+
+.bon-kop p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--inkt-zacht);
+}
+
+.bon-nummer {
+  font-family: var(--font-technisch);
+  font-size: 12px;
+  text-align: right;
+  color: var(--inkt-zacht);
+  white-space: nowrap;
+}
+
+.veld {
+  margin-bottom: 20px;
+}
+
+.veld label {
+  display: block;
+  font-family: var(--font-technisch);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--inkt-zacht);
+  margin-bottom: 8px;
+}
+
+.veld input[type="text"],
+.veld input[type="password"],
+.veld textarea {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 15px;
+  padding: 12px 14px;
+  border: 2px solid var(--papier-schaduw);
+  border-radius: 3px;
+  background: #fffdf8;
+  color: var(--inkt);
+  resize: vertical;
+}
+
+.veld textarea {
+  min-height: 140px;
+  line-height: 1.5;
+}
+
+.veld input:focus,
+.veld textarea:focus {
+  border-color: var(--stempel-rood);
+  outline: none;
+}
+
+.bon-actie {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.knop-verzend {
+  font-family: var(--font-technisch);
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--stempel-rood);
+  color: var(--papier);
+  border: none;
+  border-radius: 3px;
+  padding: 14px 28px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.knop-verzend:hover,
+.knop-verzend:focus-visible {
+  background: var(--stempel-rood-donker);
+}
+
+.knop-verzend:active {
+  transform: translateY(1px);
+}
+
+.knop-verzend:disabled {
+  background: var(--papier-schaduw);
+  color: var(--inkt-zacht);
+  cursor: not-allowed;
+}
+
+.status-tekst {
+  font-size: 13px;
+  color: var(--inkt-zacht);
+  min-height: 18px;
+}
+
+.status-tekst.fout {
+  color: var(--stempel-rood-donker);
+}
+
+.status-tekst.goed {
+  color: var(--groen-ontvangen);
+}
+
+/* Stempel "ONTVANGEN" die verschijnt na verzenden */
+.ontvangen-stempel {
+  position: absolute;
+  top: 36px;
+  right: 32px;
+  border: 3px solid var(--groen-ontvangen);
+  color: var(--groen-ontvangen);
+  font-family: var(--font-technisch);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 6px;
+  transform: rotate(-8deg);
+  opacity: 0;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none;
+}
+
+.ontvangen-stempel.zichtbaar {
+  opacity: 1;
+  transform: rotate(-8deg) scale(1);
+}
+
+/* ============================================================
+   Beheerder — wachtwoordscherm
+   ============================================================ */
+
+.login-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.login-bon {
+  background: var(--papier);
+  color: var(--inkt);
+  width: 100%;
+  max-width: 380px;
+  padding: 36px 32px;
+  border-radius: 4px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  text-align: center;
+}
+
+.login-bon h1 {
+  font-family: var(--font-technisch);
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 0;
+}
+
+.login-bon p {
+  color: var(--inkt-zacht);
+  font-size: 13px;
+  margin-bottom: 24px;
+}
+
+/* ============================================================
+   Beheerder — bestellingen dashboard
+   ============================================================ */
+
+.dashboard {
+  flex: 1;
+  padding: 110px 24px 60px;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.dashboard-kop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 32px;
+  border-bottom: 2px solid var(--blauw-lijn);
+  padding-bottom: 20px;
+}
+
+.dashboard-kop h1 {
+  font-family: var(--font-technisch);
+  font-size: clamp(22px, 4vw, 30px);
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.dashboard-kop .telling {
+  font-family: var(--font-technisch);
+  font-size: 13px;
+  color: rgba(244, 240, 228, 0.6);
+}
+
+.uitloggen {
+  background: none;
+  border: 1px solid rgba(244, 240, 228, 0.35);
+  color: var(--papier);
+  font-family: var(--font-technisch);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.uitloggen:hover,
+.uitloggen:focus-visible {
+  border-color: var(--stempel-rood);
+  color: var(--stempel-rood);
+}
+
+.bestellingen-lijst {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.bestelling-kaart {
+  background: var(--papier);
+  color: var(--inkt);
+  border-radius: 4px;
+  padding: 20px 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  position: relative;
+}
+
+.bestelling-kaart-kop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.bestelling-kaart-kop h2 {
+  font-family: var(--font-technisch);
+  font-size: 16px;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.bestelling-datum {
+  font-family: var(--font-technisch);
+  font-size: 11px;
+  color: var(--inkt-zacht);
+  white-space: nowrap;
+}
+
+.bestelling-omschrijving {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #2b2a24;
+  white-space: pre-wrap;
+  margin: 0 0 14px;
+}
+
+.bestelling-acties {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.status-badge {
+  font-family: var(--font-technisch);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1.5px solid var(--inkt-zacht);
+  color: var(--inkt-zacht);
+}
+
+.status-badge[data-status="nieuw"] {
+  border-color: var(--stempel-rood);
+  color: var(--stempel-rood-donker);
+}
+
+.status-badge[data-status="in-behandeling"] {
+  border-color: #8a6d1f;
+  color: #8a6d1f;
+}
+
+.status-badge[data-status="afgerond"] {
+  border-color: var(--groen-ontvangen);
+  color: var(--groen-ontvangen);
+}
+
+.status-select {
+  font-family: var(--font-technisch);
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 3px;
+  border: 1.5px solid var(--papier-schaduw);
+  background: #fffdf8;
+  color: var(--inkt);
+  cursor: pointer;
+}
+
+.leeg-melding {
+  font-family: var(--font-technisch);
+  text-align: center;
+  padding: 60px 20px;
+  color: rgba(244, 240, 228, 0.55);
+  font-size: 14px;
+}
